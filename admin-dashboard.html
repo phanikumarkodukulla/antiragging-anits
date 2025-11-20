@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Anti-Ragging Portal</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <div class="sidebar-brand">
+            <h4><i class="fas fa-shield-alt me-2"></i>ANITS ARC</h4>
+            <p class="text-muted small mb-0">Admin Dashboard</p>
+        </div>
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#" data-section="dashboard">
+                <i class="fas fa-home"></i>Dashboard
+            </a>
+            <a class="nav-link" href="#" data-section="complaints">
+                <i class="fas fa-file-alt"></i>Complaints
+            </a>
+            <a class="nav-link" href="#" data-section="analytics">
+                <i class="fas fa-chart-bar"></i>Analytics
+            </a>
+            <a class="nav-link" href="#" data-section="reports">
+                <i class="fas fa-download"></i>Reports
+            </a>
+            <a class="nav-link" href="#" data-section="users">
+                <i class="fas fa-users"></i>User Management
+            </a>
+            <a class="nav-link" href="#" data-section="settings">
+                <i class="fas fa-cog"></i>Settings
+            </a>
+            <hr>
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-sign-out-alt"></i>Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2><i class="fas fa-tachometer-alt me-2"></i>Dashboard Overview</h2>
+                <p class="text-muted mb-0">Welcome back, Administrator</p>
+            </div>
+            <div>
+                <button class="btn btn-outline-primary">
+                    <i class="fas fa-bell me-2"></i>Notifications <span class="badge bg-danger ms-1">3</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="stat-label">Total Complaints</div>
+                            <div class="stat-value">247</div>
+                            <small class="text-success"><i class="fas fa-arrow-up me-1"></i>12% from last month</small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="stat-label">Pending Review</div>
+                            <div class="stat-value">18</div>
+                            <small class="text-warning"><i class="fas fa-clock me-1"></i>Needs attention</small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="stat-label">In Review</div>
+                            <div class="stat-value">35</div>
+                            <small class="text-primary"><i class="fas fa-spinner me-1"></i>Under investigation</small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="stat-label">Resolved</div>
+                            <div class="stat-value">194</div>
+                            <small class="text-success"><i class="fas fa-check-circle me-1"></i>78.5% resolution rate</small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-group">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Filter by Status</label>
+                    <select class="form-select" id="statusFilter">
+                        <option value="all">All Complaints</option>
+                        <option value="pending">Pending</option>
+                        <option value="review">In Review</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Filter by Severity</label>
+                    <select class="form-select" id="severityFilter">
+                        <option value="all">All Severity</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Date Range</label>
+                    <input type="date" class="form-control" id="dateFilter">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Search</label>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search by ID or title...">
+                </div>
+            </div>
+        </div>
+
+        <!-- Complaints Table -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-list me-2"></i>Recent Complaints</h5>
+                <div>
+                    <button class="btn btn-sm btn-outline-primary" id="exportCSV">
+                        <i class="fas fa-file-csv me-1"></i>CSV
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary" id="exportExcel">
+                        <i class="fas fa-file-excel me-1"></i>Excel
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary" id="exportPDF">
+                        <i class="fas fa-file-pdf me-1"></i>PDF
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0" id="complaintsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Severity</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="complaint-row" data-id="ARW2025-001234">
+                                <td><strong>ARW2025-001234</strong></td>
+                                <td>Verbal harassment in hostel</td>
+                                <td>2025-11-18</td>
+                                <td>Boys Hostel</td>
+                                <td><span class="badge badge-high">High</span></td>
+                                <td><span class="badge badge-pending">Pending</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary view-details" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="complaint-row" data-id="ARW2025-001233">
+                                <td><strong>ARW2025-001233</strong></td>
+                                <td>Intimidation by seniors</td>
+                                <td>2025-11-17</td>
+                                <td>CSE Department</td>
+                                <td><span class="badge badge-medium">Medium</span></td>
+                                <td><span class="badge badge-review">In Review</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary view-details" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="complaint-row" data-id="ARW2025-001232">
+                                <td><strong>ARW2025-001232</strong></td>
+                                <td>Physical assault incident</td>
+                                <td>2025-11-16</td>
+                                <td>Cafeteria</td>
+                                <td><span class="badge badge-high">High</span></td>
+                                <td><span class="badge badge-review">In Review</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary view-details" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="complaint-row" data-id="ARW2025-001231">
+                                <td><strong>ARW2025-001231</strong></td>
+                                <td>Teasing and name-calling</td>
+                                <td>2025-11-15</td>
+                                <td>Library</td>
+                                <td><span class="badge badge-low">Low</span></td>
+                                <td><span class="badge badge-resolved">Resolved</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary view-details" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="complaint-row" data-id="ARW2025-001230">
+                                <td><strong>ARW2025-001230</strong></td>
+                                <td>Forced errands and tasks</td>
+                                <td>2025-11-14</td>
+                                <td>ECE Department</td>
+                                <td><span class="badge badge-medium">Medium</span></td>
+                                <td><span class="badge badge-resolved">Resolved</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary view-details" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="complaint-row" data-id="ARW2025-001229">
+                                <td><strong>ARW2025-001229</strong></td>
+                                <td>Ragging in parking area</td>
+                                <td>2025-11-13</td>
+                                <td>Parking Area</td>
+                                <td><span class="badge badge-high">High</span></td>
+                                <td><span class="badge badge-pending">Pending</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary view-details" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="complaint-row" data-id="ARW2025-001228">
+                                <td><strong>ARW2025-001228</strong></td>
+                                <td>Anonymous - Girls Hostel</td>
+                                <td>2025-11-12</td>
+                                <td>Girls Hostel</td>
+                                <td><span class="badge badge-medium">Medium</span></td>
+                                <td><span class="badge badge-review">In Review</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary view-details" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="complaint-row" data-id="ARW2025-001227">
+                                <td><strong>ARW2025-001227</strong></td>
+                                <td>Unnecessary questioning</td>
+                                <td>2025-11-11</td>
+                                <td>Sports Ground</td>
+                                <td><span class="badge badge-low">Low</span></td>
+                                <td><span class="badge badge-resolved">Resolved</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary view-details" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">Showing 8 of 247 complaints</small>
+                    <nav>
+                        <ul class="pagination pagination-sm mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div class="row g-4 mt-4">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Complaints by Severity</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center py-5">
+                            <i class="fas fa-chart-pie text-secondary" style="font-size: 5rem;"></i>
+                            <p class="text-muted mt-3">Chart Placeholder - Pie Chart</p>
+                            <p class="small text-muted">High: 45% | Medium: 35% | Low: 20%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Monthly Trend</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center py-5">
+                            <i class="fas fa-chart-line text-secondary" style="font-size: 5rem;"></i>
+                            <p class="text-muted mt-3">Chart Placeholder - Line Chart</p>
+                            <p class="small text-muted">Showing complaint trends over the last 6 months</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location-wise Distribution -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Location-wise Distribution</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <div class="p-3 bg-light rounded">
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Boys Hostel</span>
+                                <span class="badge bg-primary">45</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-light rounded">
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Girls Hostel</span>
+                                <span class="badge bg-primary">32</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-light rounded">
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">CSE Dept</span>
+                                <span class="badge bg-primary">38</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-light rounded">
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Cafeteria</span>
+                                <span class="badge bg-primary">28</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Complaint Details Modal -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsModalLabel">
+                        <i class="fas fa-file-alt me-2"></i>Complaint Details
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    <!-- Complaint ID and Status -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6 class="text-muted">Complaint ID</h6>
+                            <p class="fw-bold">ARW2025-001234</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-muted">Status</h6>
+                            <p><span class="badge badge-pending">Pending Review</span></p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Complaint Details -->
+                    <div class="mb-3">
+                        <h6 class="text-muted">Title</h6>
+                        <p class="fw-bold">Verbal harassment in hostel</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <h6 class="text-muted">Description</h6>
+                        <p>I was verbally harassed by a group of seniors in the hostel common room. They used inappropriate language and threatened me when I refused to comply with their demands. This happened on multiple occasions over the past week.</p>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6 class="text-muted">Date of Incident</h6>
+                            <p>November 18, 2025</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-muted">Location</h6>
+                            <p>Boys Hostel - Block A</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6 class="text-muted">Severity Level</h6>
+                            <p><span class="badge badge-high">High</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-muted">Witnesses</h6>
+                            <p>2 witnesses</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <h6 class="text-muted">Complainant Details</h6>
+                        <p>
+                            <strong>Name:</strong> Anonymous<br>
+                            <strong>Email:</strong> student@anits.edu.in<br>
+                            <strong>Phone:</strong> +91 9876543210
+                        </p>
+                    </div>
+
+                    <div class="mb-3">
+                        <h6 class="text-muted">Evidence Attached</h6>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-image me-1"></i>Image_1.jpg
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-video me-1"></i>Video_1.mp4
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Action Section -->
+                    <h6 class="text-muted mb-3">Take Action</h6>
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <button class="btn btn-warning w-100">
+                                <i class="fas fa-clock me-2"></i>Mark In Review
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-success w-100">
+                                <i class="fas fa-check me-2"></i>Mark Resolved
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-danger w-100">
+                                <i class="fas fa-times me-2"></i>Reject
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Notes Section -->
+                    <div class="mt-4">
+                        <h6 class="text-muted">Admin Notes</h6>
+                        <textarea class="form-control" rows="3" placeholder="Add investigation notes or action taken..."></textarea>
+                        <button class="btn btn-primary mt-2">
+                            <i class="fas fa-save me-2"></i>Save Notes
+                        </button>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-print me-2"></i>Print Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js"></script>
+    
+</body>
+</html>
